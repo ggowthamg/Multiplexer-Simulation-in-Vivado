@@ -105,25 +105,23 @@ output
 4:1 MUX Behavioral Implementation
 
 // mux4_to_1_behavioral.v
-module mux4_to_1_behavioral (
-    input wire A,
-    input wire B,
-    input wire C,
-    input wire D,
-    input wire S0,
-    input wire S1,
-    output reg Y
-);
-    always @(*) begin
-        case ({S1, S0})
-            2'b00: Y = A;
-            2'b01: Y = B;
-            2'b10: Y = C;
-            2'b11: Y = D;
-            default: Y = 1'bx; // Undefined
-        endcase
-    end
+input [1:0] s;
+input [3:0] i;
+output reg y;  
+
+always @(s or i)  
+begin
+    case (s)
+        2'b00: y = i[0];   
+        2'b01: y = i[1];  
+        2'b10: y = i[2];   
+        2'b11: y = i[3];  
+        default: y = 1'b0; 
+    endcase
+end
 endmodule
+output
+![Screenshot 2024-09-19 144057](https://github.com/user-attachments/assets/c7a05d2c-2c86-46a0-89ec-8540df377295)
 
 4:1 MUX Structural Implementation
 
