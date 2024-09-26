@@ -155,6 +155,9 @@ module mux4_to_1_structural (
     // Instantiate the final 2:1 MUX
     mux2_to_1 mux_final (.A(mux_low), .B(mux_high), .S(S1), .Y(Y));
 endmodule
+output
+![Screenshot a7c53f00-1104-4d5b-b743-5da52bf7956f](https://github.com/user-attachments/assets/70eef26b-e536-4950-b245-dacccf6a31fa)
+
 
 Testbench Implementation
 
