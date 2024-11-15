@@ -1,4 +1,5 @@
-SIMULATION AND IMPLEMENTATION OF LOGIC GATES
+4:1 MULTIPLEXER USING VERILOG HDL (GATE LEVEL, DATAFLOW, BEHAVIORAL, AND STRUCTURAL MODELLING)
+
 AIM:
 To design and simulate a 4:1 Multiplexer (MUX) using Verilog HDL in four different modeling styles—Gate-Level, Data Flow, Behavioral, and Structural—and to verify its functionality through a testbench using the Vivado 2023.1 simulation environment. The experiment aims to understand how different abstraction levels in Verilog can be used to describe the same digital logic circuit and analyze their performance.
 
@@ -62,7 +63,7 @@ Truth Table
 Verilog Code
 
 4:1 MUX Gate-Level Implementation
-
+```
 module mux_4to1 (
     input wire [1:0] w,    // 2-bit selection input
     input wire a, b, c, d,   // 4 input data lines
@@ -74,13 +75,13 @@ module mux_4to1 (
                  (w == 2'b10) ? c :
                                   d;
 endmodule
-
+```
 ![Screenshot 2024-09-19 at 14 23 03_418ee07c](https://github.com/user-attachments/assets/9e9fbd6d-8fea-43b8-a270-2e747de3c665)
 
 
 
 4:1 MUX Data Flow Implementation
-
+```
 module mux4_1 (
     input wire a, b, c, d,
     input wire sel0, sel1,
@@ -99,11 +100,12 @@ module mux4_1 (
     end
 
 endmodule
+```
 output
 ![Screenshot 2024-09-19 142717](https://github.com/user-attachments/assets/dd5789e4-feee-4029-aa34-50f9f0a9aae7)
 
 4:1 MUX Behavioral Implementation
-
+```
 // mux4_to_1_behavioral.v
 input [1:0] s;
 input [3:0] i;
@@ -120,11 +122,12 @@ begin
     endcase
 end
 endmodule
+```
 output
 ![Screenshot 2024-09-19 144057](https://github.com/user-attachments/assets/c7a05d2c-2c86-46a0-89ec-8540df377295)
 
 4:1 MUX Structural Implementation
-
+```
 // mux2_to_1.v
 module mux2_to_1 (
     input wire A,
@@ -134,8 +137,8 @@ module mux2_to_1 (
 );
     assign Y = S ? B : A;
 endmodule
-
-
+```
+```
 // mux4_to_1_structural.v
 module mux4_to_1_structural (
     input wire A,
@@ -155,12 +158,13 @@ module mux4_to_1_structural (
     // Instantiate the final 2:1 MUX
     mux2_to_1 mux_final (.A(mux_low), .B(mux_high), .S(S1), .Y(Y));
 endmodule
+```
 output
 ![Screenshot a7c53f00-1104-4d5b-b743-5da52bf7956f](https://github.com/user-attachments/assets/70eef26b-e536-4950-b245-dacccf6a31fa)
 
 
 Testbench Implementation
-
+```
 // mux4_to_1_tb.v
 `timescale 1ns / 1ps
 
@@ -247,6 +251,7 @@ module mux4_to_1_tb;
                  $time, S1, S0, A, B, C, D, Y_gate, Y_dataflow, Y_behavioral, Y_structural);
     end
 endmodule
+```
 
 
 Sample Output
